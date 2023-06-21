@@ -1,0 +1,419 @@
+---
+title: "Safety Trends"
+author: "Puget Sound Regional Council"
+date: "June 29, 2023"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    css: styles.css
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(echarts4r)
+library(psrcplot)
+
+knitr::opts_chunk$set(echo = FALSE)
+e_common(font_family = "Poppins")
+data_file <- "C:/Users/chelmann/OneDrive - Puget Sound Regional Council/coding/psrc-safety-plan/convening/data/collision_data.csv"
+
+# Custom svg icons for pictorial charts
+fa_house <- "path://M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
+
+fa_person <- "path://M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152z"
+
+fa_user <- "path://M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z"
+
+collisions <- read_csv(data_file, show_col_types = FALSE) %>%
+  mutate(injury_type = str_replace_all(injury_type, "Fatality", "Traffic Related Deaths")) %>%
+  mutate(injury_type = str_replace_all(injury_type, "Serious Injury", "Serious Injuries")) %>%
+  mutate(injury_rate_per_100k = round(injury_rate_per_100k,1)) %>%
+  mutate(collision_rate_per_100k = round(collision_rate_per_100k,1))
+
+num_cities <- collisions %>%
+  filter(year >= 2018 & geography=="City") %>%
+  select(name) %>%
+  distinct() %>%
+  pull() %>%
+  length()
+
+```
+
+## Traffic Related Deaths and Serious Injuries are increasing
+
+```{r region-collisions}
+
+ui <- fluidPage(
+  fluidRow(
+    column(3, ""),
+    column(6, radioButtons("region_toggle", label = "Rate or Total",
+                            choices = list("Total" = "injuries", "Rate per 100k people" = "injury_rate_per_100k"),
+                            selected = "injuries",
+                            inline = TRUE)),
+    column(3, "")
+  ),
+  
+  fluidRow(
+    column(12, echarts4rOutput("region_plot"))
+  ),
+  
+  fluidRow(
+    column(12, "Source: Washington State Department of Transportation, Crash Data Division, Multi-Row data files (MRFF)")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  collisions_filter <- reactive({
+  collisions %>% 
+      select("geography", "name", "year", "injury_type", metric=all_of(input$region_toggle))
+  })
+  
+  output$region_plot <- renderEcharts4r({
+    collisions_filter() %>%
+      filter(geography=="County" & name=="Region") %>%
+      mutate(data_year = as.character(year)) %>%
+      group_by(injury_type) %>%
+      e_charts(x = data_year) %>%
+      e_line(metric, smooth = FALSE) %>%
+      e_color(psrc_colors$pgnobgy_5) %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage") %>%
+      e_tooltip(trigger = "axis") %>%
+      e_x_axis(axisTick=list(show = FALSE)) %>%
+      e_show_loading()
+
+  })
+}
+
+shinyApp(ui, server)
+
+```
+
+## It is both an Urban and a Rural thing!
+
+```{r rural-urban}
+
+ui <- fluidPage(
+  fluidRow(
+    column(3, ""),
+    column(6,
+           sliderInput("rural_year", label = NULL, sep="", animate=FALSE, 
+                       min = min(collisions$year), max = max(collisions$year), 
+                       value = max(collisions$year))),
+    column(3, "")),
+  
+  fluidRow(
+    column(6, plotOutput("rural_urban_serious_plot")),
+    column(6, plotOutput("rural_urban_fatal_plot"))
+  ),
+  
+    fluidRow(
+    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  rural_urban_fatal_filter <- reactive({
+    collisions %>% 
+      select("geography", "name", "year", "injury_type", "injuries") %>%
+      filter(geography == "Regional Geography" & injury_type == "Traffic Related Deaths" & year==input$rural_year) 
+  })
+  
+  rural_urban_serious_filter <- reactive({
+    collisions %>% 
+      select("geography", "name", "year", "injury_type", "injuries") %>%
+      filter(geography == "Regional Geography" & injury_type == "Serious Injuries" & year==input$rural_year)
+  })
+  
+  output$rural_urban_fatal_plot <- renderPlot({
+    create_treemap_chart(t=rural_urban_fatal_filter(), s="injuries", fill="name", title = "Traffic Relared Deaths")
+  })
+  
+  output$rural_urban_serious_plot <- renderPlot({
+    create_treemap_chart(t=rural_urban_serious_filter(), s="injuries", fill="name", title = "Serious Injuries") 
+  })
+  
+  
+}
+
+shinyApp(ui, server)
+
+```
+
+## Every City is affected
+
+```{r cities}
+
+ui <- fluidPage(
+  fluidRow(
+    column(12, paste0("Since 2018, ", num_cities, " of the region's 82 cities and towns (", round((num_cities/82)*100,0),"%) has had at least one serious injury or traffic related death.")),
+),
+
+br(),
+
+  fluidRow(
+    column(12, echarts4rOutput("city_wc"))
+  ),
+  
+    fluidRow(
+    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  city_filter <- reactive({
+    collisions %>%
+      filter(year >= 2018 & geography=="City") %>%
+      select("name", "injuries") %>%
+      group_by(name) %>%
+      summarise(freq=sum(injuries)) %>%
+      as_tibble
+  })
+  
+  output$city_wc <- renderEcharts4r({
+    city_filter() %>%
+      e_charts() %>%
+      e_cloud(name, freq, shape = "rectangle", sizeRange = c(1, 75)) %>%
+      e_title("Cities with Traffic Related Deaths or Serious Injuries") %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage")
+
+  })
+  
+}
+
+shinyApp(ui, server)
+
+```
+
+
+## Traffic Deaths Disproportionally Impact People of Color
+
+```{r racial-disparities}
+
+ui <- fluidPage(
+  fluidRow(
+    column(3, ""),
+    column(6,
+           sliderInput("race_year", label = NULL, sep="", animate=FALSE, 
+                       min = min(collisions$year), max = max(collisions$year), 
+                       value = 2021)),
+    column(3, "")),
+  
+  fluidRow(
+    column(12, echarts4rOutput("racial_disparities_plot"))
+  ),
+  
+    fluidRow(
+    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  fatal_filter <- reactive({
+    collisions %>%
+      select("geography", "name", "year", "injury_type", fatality_rate="injury_rate_per_100k") %>%
+      filter(geography == "Race & Ethnicity" & injury_type == "Traffic Related Deaths" & year==input$race_year) %>%
+      arrange(fatality_rate) %>%
+      mutate(race= str_wrap(name, 15))
+  })
+  
+  output$racial_disparities_plot <- renderEcharts4r({
+    fatal_filter() %>% 
+    e_charts(x=race) %>%
+    e_color(psrc_colors$pgnobgy_5) %>%
+    e_tooltip() %>%
+    e_grid(left = '20%') %>%
+    e_pictorial_(serie = "fatality_rate", 
+                symbol = fa_user,
+                symbolRepeat = TRUE, z = -1,
+                symbolSize = 30,
+                legend = FALSE,
+                name="Fatality Rate per 100,000 people") %>%
+    e_flip_coords() %>%
+    e_legend(show = FALSE) %>%
+    e_x_axis(splitLine=list(show = FALSE)) %>% 
+    e_y_axis(splitLine=list(show = FALSE),
+             axisPointer = list(show = FALSE)) %>%
+    e_toolbox_feature("dataZoom") %>%
+    e_toolbox_feature(feature="reset") %>%
+    e_toolbox_feature("dataView") %>%
+    e_toolbox_feature("saveAsImage") %>%
+    e_title("Traffic Related Deaths")
+
+  })
+}
+
+shinyApp(ui, server)
+
+```
+
+## Men acccount for a large share of injuries and deaths
+
+```{r gender-disparities}
+
+ui <- fluidPage(
+  fluidRow(
+    column(3, ""),
+    column(6,
+           sliderInput("gender_year", label = NULL, sep="", animate=FALSE, 
+                       min = min(collisions$year), max = max(collisions$year), 
+                       value = max(collisions$year))),
+    column(3, "")),
+  
+  fluidRow(
+    column(6, echarts4rOutput("gender_serious_plot")),
+    column(6, echarts4rOutput("gender_fatal_plot"))
+  ),
+  
+    fluidRow(
+    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  gender_fatal_filter <- reactive({
+    collisions %>% 
+      select("geography", "name", "year", "injury_type", "injuries") %>%
+      filter(geography == "Gender" & injury_type == "Traffic Related Deaths" & year==input$gender_year)
+  })
+  
+  gender_serious_filter <- reactive({
+    collisions %>% 
+      select("geography", "name", "year", "injury_type", "injuries") %>%
+      filter(geography == "Gender" & injury_type == "Serious Injuries" & year==input$gender_year)
+  })
+  
+  output$gender_fatal_plot <- renderEcharts4r({
+    gender_fatal_filter() %>% 
+      rename(`Traffic Related Deaths` = "injuries") %>%
+      e_charts(name) %>%
+      e_pie(`Traffic Related Deaths`, radius = c("50%", "70%")) %>% 
+      e_color(psrc_colors$pgnobgy_5) %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage") %>%
+      e_tooltip() %>%
+      e_title("Traffic Related Deaths") %>%
+      e_legend(show = FALSE)
+
+  })
+  
+  output$gender_serious_plot <- renderEcharts4r({
+    gender_serious_filter() %>% 
+      rename(`Serious Injuries` = "injuries") %>%
+      e_charts(name) %>%
+      e_pie(`Serious Injuries`, radius = c("50%", "70%")) %>% 
+      e_color(psrc_colors$pgnobgy_5) %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage") %>%
+      e_tooltip() %>%
+      e_title("Serious Injuries") %>%
+      e_legend(show = FALSE)
+
+  })
+  
+  
+}
+
+shinyApp(ui, server)
+
+```
+
+## Younger People are more likely to be in a Serious Collisions
+
+```{r age-disparities}
+
+ui <- fluidPage(
+  fluidRow(
+    column(3, ""),
+    column(6,
+           sliderInput("age_year", label = NULL, sep="", animate=FALSE, 
+                       min = min(collisions$year), max = 2021, 
+                       value = 2021)),
+    column(3, "")),
+  
+  fluidRow(
+    column(6, echarts4rOutput("age_total_plot")),
+    column(6, echarts4rOutput("age_rate_plot"))
+  ),
+  
+    fluidRow(
+    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+  )
+  
+)
+ 
+server <- function(input, output){
+  
+  age_total_filter <- reactive({
+    collisions %>% 
+      filter(geography=="Age" & year==input$age_year & name != "Unknown") %>%
+      select("name", "injury_type", value="injuries")
+  })
+  
+  age_rate_filter <- reactive({
+    collisions %>% 
+      filter(geography=="Age" & year==input$age_year & name != "Unknown") %>%
+      select("name", "injury_type", value="injury_rate_per_100k")
+  })
+  
+  output$age_total_plot <- renderEcharts4r({
+    age_total_filter() %>% 
+      group_by(injury_type) %>%
+      e_charts(name) %>%
+      e_bar(value, stack = "grp") %>%
+      e_color(psrc_colors$pgnobgy_5) %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage") %>%
+      e_tooltip(trigger = "axis") %>%
+      e_x_axis(axisTick=list(show = FALSE)) %>%
+      e_show_loading() %>%
+      e_title("Total") %>%
+      e_legend(show = FALSE)
+  })
+  
+  output$age_rate_plot <- renderEcharts4r({
+    age_rate_filter() %>% 
+      group_by(injury_type) %>%
+      e_charts(name) %>%
+      e_bar(value, stack = "grp") %>%
+      e_color(psrc_colors$pgnobgy_5) %>%
+      e_toolbox_feature("dataZoom") %>%
+      e_toolbox_feature(feature="reset") %>%
+      e_toolbox_feature("dataView") %>%
+      e_toolbox_feature("saveAsImage") %>%
+      e_tooltip(trigger = "axis") %>%
+      e_x_axis(axisTick=list(show = FALSE)) %>%
+      e_show_loading() %>%
+      e_title("Rate per 100,000 People") %>%
+      e_legend(show = FALSE)
+  })
+  
+  
+}
+
+shinyApp(ui, server)
+
+```
+
