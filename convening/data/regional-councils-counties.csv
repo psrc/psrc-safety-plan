@@ -1,0 +1,191 @@
+﻿MPO_AREA,MPO_FIPS,MPO_NAME,MSA_FIPS,MSA_NAME,COUNTY_FIPS,COUNTY_NAME,STATE_FIPS,STATE_NAME,STATE_LONG_NAME
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",63,Clayton,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",67,Cobb,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",89,DeKalb,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",97,Douglas,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",113,Fayette,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",117,Forsyth,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",121,Fulton,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",135,Gwinnett,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",151,Henry,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",247,Rockdale,13,GA,Georgia
+Atlanta,ARC,Atalanta Regional Commission,12060,"Atlanta-Sandy Springs-Alpharetta, GA (Metropolitan Statistical Area)",57,Cherokee,13,GA,Georgia
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",21,Bastrop,48,TX,Texas
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",53,Burnet,48,TX,Texas
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",55,Caldwell,48,TX,Texas
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",209,Hays,48,TX,Texas
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",453,Travis,48,TX,Texas
+Austin,CAMPO,Capital Area Metropoltian Planning Organization,12420,"Austin-Round Rock-Georgetown, TX (Metropolitan Statistical Area)",491,Williamson,48,TX,Texas
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",3,Anne Arundel,24,MD,Maryland
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",5,Baltimore,24,MD,Maryland
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",13,Carroll,24,MD,Maryland
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",25,Harford,24,MD,Maryland
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",27,Howard,24,MD,Maryland
+Baltimore,BMC,Baltimore Metropolitan Council,12580,"Baltimore-Columbia-Towson, MD (Metropolitan Statistical Area)",35,Queen Anne's,24,MD,Maryland
+Bay Area,MTC,Metropolitan Transportation Commission,41860,"San Francisco-Oakland-Berkeley, CA (Metropolitan Statistical Area)",1,Alameda,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,41860,"San Francisco-Oakland-Berkeley, CA (Metropolitan Statistical Area)",13,Contra Costa,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,41860,"San Francisco-Oakland-Berkeley, CA (Metropolitan Statistical Area)",41,Marin,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,34900,"Napa, CA (Metropolitan Statistical Area)",55,Napa,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,41860,"San Francisco-Oakland-Berkeley, CA (Metropolitan Statistical Area)",75,San Francisco,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,41860,"San Francisco-Oakland-Berkeley, CA (Metropolitan Statistical Area)",81,San Mateo,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,41940,"San Jose-Sunnyvale-Santa Clara, CA (Metropolitan Statistical Area)",85,Santa Clara,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,46700,"Vallejo, CA (Metropolitan Statistical Area)",95,Solano,6,CA,California
+Bay Area,MTC,Metropolitan Transportation Commission,42220,"Santa Rosa-Petaluma, CA (Metropolitan Statistical Area)",97,Sonoma,6,CA,California
+Boston,MAPC,Metropolitan Area Planning Council,14460,"Boston-Cambridge-Newton, MA-NH (Metropolitan Statistical Area)",9,Essex,25,MA,Massachusetts
+Boston,MAPC,Metropolitan Area Planning Council,14460,"Boston-Cambridge-Newton, MA-NH (Metropolitan Statistical Area)",17,Middlesex,25,MA,Massachusetts
+Boston,MAPC,Metropolitan Area Planning Council,14460,"Boston-Cambridge-Newton, MA-NH (Metropolitan Statistical Area)",21,Norfolk,25,MA,Massachusetts
+Boston,MAPC,Metropolitan Area Planning Council,14460,"Boston-Cambridge-Newton, MA-NH (Metropolitan Statistical Area)",23,Plymouth,25,MA,Massachusetts
+Boston,MAPC,Metropolitan Area Planning Council,14460,"Boston-Cambridge-Newton, MA-NH (Metropolitan Statistical Area)",25,Suffolk,25,MA,Massachusetts
+Charlotte,CRTPO,Charlotte Regional Transportation Planning Organization,16740,"Charlotte-Concord-Gastonia, NC-SC (Metropolitan Statistical Area)",97,Iredell,37,NC,North Carolina
+Charlotte,CRTPO,Charlotte Regional Transportation Planning Organization,16740,"Charlotte-Concord-Gastonia, NC-SC (Metropolitan Statistical Area)",119,Mecklenburg,37,NC,North Carolina
+Charlotte,CRTPO,Charlotte Regional Transportation Planning Organization,16740,"Charlotte-Concord-Gastonia, NC-SC (Metropolitan Statistical Area)",179,Union,37,NC,North Carolina
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",31,Cook,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",43,DuPage,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",89,Kane,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",93,Kendall,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",97,Lake,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",111,McHenry,17,IL,Illinois
+Chicago,CMAP,Chicago Metropolitan Agency for Planning,16980,"Chicago-Naperville-Elgin, IL-IN-WI (Metropolitan Statistical Area)",197,Will,17,IL,Illinois
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",85,Collin,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",113,Dallas,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",121,Denton,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",139,Ellis,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",143,Erath,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",221,Hood,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",231,Hunt,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",251,Johnson,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",257,Kaufman,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",349,Navarro,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",363,Palo Pinto,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",367,Parker,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",397,Rockwall,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",425,Somervell,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",439,Tarrant,48,TX,Texas
+Dallas,NCTCOG,North Central Texas Council of Governments,19100,"Dallas-Fort Worth-Arlington, TX (Metropolitan Statistical Area)",497,Wise,48,TX,Texas
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",1,Adams,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",5,Arapahoe,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,14500,"Boulder, CO (Metropolitan Statistical Area)",13,Boulder,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",14,Broomfield,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",19,Clear Creek,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",31,Denver,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",35,Douglas,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",47,Gilpin,8,CO,Colorado
+Denver,DRCOG,Denver Regional Council of Governments,19740,"Denver-Aurora-Lakewood, CO (Metropolitan Statistical Area)",59,Jefferson,8,CO,Colorado
+Detroit,SEMCOG,Southeast Michigan Council of Governments,19820,"Detroit-Warren-Dearborn, MI (Metropolitan Statistical Area)",93,Livingston,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,19820,"Detroit-Warren-Dearborn, MI (Metropolitan Statistical Area)",99,Macomb,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,33780,"Monroe, MI (Metropolitan Statistical Area)",115,Monroe,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,19820,"Detroit-Warren-Dearborn, MI (Metropolitan Statistical Area)",125,Oakland,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,19820,"Detroit-Warren-Dearborn, MI (Metropolitan Statistical Area)",147,St. Clair,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,11460,"Ann Arbor, MI (Metropolitan Statistical Area)",161,Washtenaw,26,MI,Michigan
+Detroit,SEMCOG,Southeast Michigan Council of Governments,19820,"Detroit-Warren-Dearborn, MI (Metropolitan Statistical Area)",163,Wayne,26,MI,Michigan
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",15,Austin,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",39,Brazoria,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",71,Chambers,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",89,Colorado,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",157,Fort Bend,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",167,Galveston,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",201,Harris,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",291,Liberty,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",321,Matagorda,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",339,Montgomery,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",471,Walker,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",473,Waller,48,TX,Texas
+Houston,H-GAC,Houston-Galveston Area Council,26420,"Houston-The Woodlands-Sugar Land, TX (Metropolitan Statistical Area)",481,Wharton,48,TX,Texas
+Los Angeles,SCAG,Southern California Association of Governments,20940,"El Centro, CA (Metropolitan Statistical Area)",25,Imperial,6,CA,California
+Los Angeles,SCAG,Southern California Association of Governments,31080,"Los Angeles-Long Beach-Anaheim, CA (Metropolitan Statistical Area)",37,Los Angeles,6,CA,California
+Los Angeles,SCAG,Southern California Association of Governments,31080,"Los Angeles-Long Beach-Anaheim, CA (Metropolitan Statistical Area)",59,Orange,6,CA,California
+Los Angeles,SCAG,Southern California Association of Governments,40140,"Riverside-San Bernardino-Ontario, CA (Metropolitan Statistical Area)",65,Riverside,6,CA,California
+Los Angeles,SCAG,Southern California Association of Governments,40140,"Riverside-San Bernardino-Ontario, CA (Metropolitan Statistical Area)",71,San Bernardino,6,CA,California
+Los Angeles,SCAG,Southern California Association of Governments,37100,"Oxnard-Thousand Oaks-Ventura, CA (Metropolitan Statistical Area)",111,Ventura,6,CA,California
+Miami,SEFTC,Southeast Florida Transportation Council,33100,"Miami-Fort Lauderdale-Pompano Beach, FL (Metropolitan Statistical Area)",11,Broward,12,FL,Florida
+Miami,SEFTC,Southeast Florida Transportation Council,33100,"Miami-Fort Lauderdale-Pompano Beach, FL (Metropolitan Statistical Area)",86,Miami-Dade,12,FL,Florida
+Miami,SEFTC,Southeast Florida Transportation Council,33100,"Miami-Fort Lauderdale-Pompano Beach, FL (Metropolitan Statistical Area)",99,Palm Beach,12,FL,Florida
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",3,Anoka,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",19,Carver,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",37,Dakota,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",53,Hennepin,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",123,Ramsey,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",139,Scott,27,MN,Minnesota
+Minneapolis,Met Council,Metropolitan Council,33460,"Minneapolis-St. Paul-Bloomington, MN-WI (Metropolitan Statistical Area)",163,Washington,27,MN,Minnesota
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",5,Bronx,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",47,Kings,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",59,Nassau,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",61,New York,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",79,Putnam,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",81,Queens,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",85,Richmond,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",87,Rockland,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",103,Suffolk,36,NY,New York
+New York City,NYMTC,New York Metropolitan Transportation Council,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",119,Westchester,36,NY,New York
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",3,Bergen,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",13,Essex,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",17,Hudson,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",19,Hunterdon,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",23,Middlesex,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",25,Monmouth,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",27,Morris,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",29,Ocean,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",31,Passaic,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",35,Somerset,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",37,Sussex,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,35620,"New York-Newark-Jersey City, NY-NJ-PA (Metropolitan Statistical Area)",39,Union,34,NJ,New Jersey
+Newark,NJPTA,North Jersey Transporttrion Planning Authority,10900,"Allentown-Bethlehem-Easton, PA-NJ (Metropolitan Statistical Area)",41,Warren,34,NJ,New Jersey
+Orlando,MetroPlan,Metro Plan Orlando,36740,"Orlando-Kissimmee-Sanford, FL (Metropolitan Statistical Area)",95,Orange,12,FL,Florida
+Orlando,MetroPlan,Metro Plan Orlando,36740,"Orlando-Kissimmee-Sanford, FL (Metropolitan Statistical Area)",97,Osceola,12,FL,Florida
+Orlando,MetroPlan,Metro Plan Orlando,36740,"Orlando-Kissimmee-Sanford, FL (Metropolitan Statistical Area)",117,Seminole,12,FL,Florida
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",5,Burlington,34,NJ,New Jersey
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",7,Camden,34,NJ,New Jersey
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",15,Gloucester,34,NJ,New Jersey
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,45940,"Trenton-Princeton, NJ (Metropolitan Statistical Area)",21,Mercer,34,NJ,New Jersey
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",17,Bucks,42,PA,Pennsylvania
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",29,Chester,42,PA,Pennsylvania
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",45,Delaware,42,PA,Pennsylvania
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",91,Montgomery,42,PA,Pennsylvania
+Philadelphia,DVRPC,Delaware Valley Regional Planning Commission,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD (Metropolitan Statistical Area)",101,Philadelphia,42,PA,Pennsylvania
+Phoenix,MAG,Maricopa Association of Governments,38060,"Phoenix-Mesa-Chandler, AZ (Metropolitan Statistical Area)",13,Maricopa,4,AZ,Arizona
+Phoenix,MAG,Maricopa Association of Governments,38060,"Phoenix-Mesa-Chandler, AZ (Metropolitan Statistical Area)",21,Pinal,4,AZ,Arizona
+Portland,Metro,Oregon Metro,38900,"Portland-Vancouver-Hillsboro, OR-WA (Metropolitan Statistical Area)",5,Clackamas,41,OR,Oregon
+Portland,Metro,Oregon Metro,38900,"Portland-Vancouver-Hillsboro, OR-WA (Metropolitan Statistical Area)",51,Multnomah,41,OR,Oregon
+Portland,Metro,Oregon Metro,38900,"Portland-Vancouver-Hillsboro, OR-WA (Metropolitan Statistical Area)",67,Washington,41,OR,Oregon
+Sacramento,SACOG,Sacramento Area Council of Governments,40900,"Sacramento-Roseville-Folsom, CA (Metropolitan Statistical Area)",17,El Dorado,6,CA,California
+Sacramento,SACOG,Sacramento Area Council of Governments,40900,"Sacramento-Roseville-Folsom, CA (Metropolitan Statistical Area)",61,Placer,6,CA,California
+Sacramento,SACOG,Sacramento Area Council of Governments,40900,"Sacramento-Roseville-Folsom, CA (Metropolitan Statistical Area)",67,Sacramento,6,CA,California
+Sacramento,SACOG,Sacramento Area Council of Governments,49700,"Yuba City, CA (Metropolitan Statistical Area)",101,Sutter,6,CA,California
+Sacramento,SACOG,Sacramento Area Council of Governments,40900,"Sacramento-Roseville-Folsom, CA (Metropolitan Statistical Area)",113,Yolo,6,CA,California
+Sacramento,SACOG,Sacramento Area Council of Governments,49700,"Yuba City, CA (Metropolitan Statistical Area)",115,Yuba,6,CA,California
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",13,Atascosa,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",29,Bexar,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",91,Comal,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",187,Guadalupe,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",259,Kendall,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",325,Medina,48,TX,Texas
+San Antonio,AAMPO,Alamo Area Metropoltian Planning Organization,41700,"San Antonio-New Braunfels, TX (Metropolitan Statistical Area)",493,Wilson,48,TX,Texas
+San Diego,SANDAG,San Diego Association of Governments,41740,"San Diego-Chula Vista-Carlsbad, CA (Metropolitan Statistical Area)",73,San Diego,6,CA,California
+Seattle,PSRC,Puget Sound Regional Council,42660,"Seattle-Tacoma-Bellevue, WA (Metropolitan Statistical Area)",33,King,53,WA,Washington
+Seattle,PSRC,Puget Sound Regional Council,14740,"Bremerton-Silverdale-Port Orchard, WA (Metropolitan Statistical Area)",35,Kitsap,53,WA,Washington
+Seattle,PSRC,Puget Sound Regional Council,42660,"Seattle-Tacoma-Bellevue, WA (Metropolitan Statistical Area)",53,Pierce,53,WA,Washington
+Seattle,PSRC,Puget Sound Regional Council,42660,"Seattle-Tacoma-Bellevue, WA (Metropolitan Statistical Area)",61,Snohomish,53,WA,Washington
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",119,Madison,17,IL,Illinois
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",133,Monroe,17,IL,Illinois
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",163,St. Clair,17,IL,Illinois
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",71,Franklin,29,MO,Missouri
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",99,Jefferson,29,MO,Missouri
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",183,St. Charles,29,MO,Missouri
+St Louis,EWG,East-West Gateway Council of Governments,41180,"St. Louis, MO-IL (Metropolitan Statistical Area)",189,St. Louis,29,MO,Missouri
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,26140,"Homosassa Springs, FL (Metropolitan Statistical Area)",17,Citrus,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,45300,"Tampa-St. Petersburg-Clearwater, FL (Metropolitan Statistical Area)",53,Hernando,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,45300,"Tampa-St. Petersburg-Clearwater, FL (Metropolitan Statistical Area)",57,Hillsborough,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,35840,"North Port-Sarasota-Bradenton, FL (Metropolitan Statistical Area)",81,Manatee,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,45300,"Tampa-St. Petersburg-Clearwater, FL (Metropolitan Statistical Area)",101,Pasco,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,45300,"Tampa-St. Petersburg-Clearwater, FL (Metropolitan Statistical Area)",103,Pinellas,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,29460,"Lakeland-Winter Haven, FL (Metropolitan Statistical Area)",105,Polk,12,FL,Florida
+Tampa,SCTPA,Sun Coast Transporation Planning Alliance,35840,"North Port-Sarasota-Bradenton, FL (Metropolitan Statistical Area)",115,Sarasota,12,FL,Florida
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",1,District of Columbia,11,DC,District of Columbia
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",17,Charles,24,MD,Maryland
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",21,Frederick,24,MD,Maryland
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",31,Montgomery,24,MD,Maryland
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",33,Prince George's,24,MD,Maryland
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",13,Arlington,51,VA,Virginia
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",107,Loudoun,51,VA,Virginia
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",59,Fairfax,51,VA,Virginia
+Washington DC,COG,Metropolitan Washington Council of Governments,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV (Metropolitan Statistical Area)",153,Prince William,51,VA,Virginia

@@ -18,9 +18,9 @@ library(sf)
 
 knitr::opts_chunk$set(echo = FALSE)
 e_common(font_family = "Poppins")
-data_file <- "C:/Users/chelmann/OneDrive - Puget Sound Regional Council/coding/psrc-safety-plan/convening/data/collision_data.csv"
+data_file <- "data/collision_data.csv"
 
-mpo_file <- "C:/Users/chelmann/OneDrive - Puget Sound Regional Council/coding/psrc-safety-plan/convening/data/mpo_data.csv"
+mpo_file <- "data/mpo_data.csv"
 
 psrc.logo <- "data/psrc_logo.png"
 

@@ -6,7 +6,7 @@ data_years <- seq(2010, 2021, by=1)
 metros <- c("Portland", "Bay Area", "San Diego", "Denver", "Atlanta","Washington DC", "Boston", "Miami" ,"Phoenix", "Austin", "Dallas")
 
 # MPO Cenus Data ----------------------------------------------------------------
-mpo <- read_csv("X:/DSA/shiny-uploads/data/regional-councils-counties.csv") %>% 
+mpo <- read_csv("data/regional-councils-counties.csv") %>% 
   mutate(COUNTY_FIPS=str_pad(COUNTY_FIPS, width=3, side=c("left"), pad="0")) %>%
   mutate(STATE_FIPS=str_pad(STATE_FIPS, width=2, side=c("left"), pad="0")) %>%
   mutate(GEOID = paste0(STATE_FIPS,COUNTY_FIPS))
@@ -88,4 +88,4 @@ for (yrs in data_years) {
 }
 
 print("Output final FARS data")
-write_csv(processed, "convening/data/mpo_data.csv")
+write_csv(processed, "data/mpo_data.csv")
