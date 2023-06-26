@@ -76,3 +76,9 @@ slides > slide.title-slide hgroup h2 {
 slides > slide.title-slide hgroup h1 {
   color:white;
 }
+
+.chart_source {
+  color: #999999;
+  font-family: "Poppins";
+  font-size: 10pt;
+}

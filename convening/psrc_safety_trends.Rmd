@@ -1,6 +1,6 @@
 ---
 title: "Safety Trends"
-author: "Puget Sound Regional Council"
+author: "PSRC Safety Summit"
 date: "June 29, 2023"
 output: 
   ioslides_presentation:
@@ -13,10 +13,16 @@ runtime: shiny
 library(tidyverse)
 library(echarts4r)
 library(psrcplot)
+library(leaflet)
+library(sf)
 
 knitr::opts_chunk$set(echo = FALSE)
 e_common(font_family = "Poppins")
 data_file <- "C:/Users/chelmann/OneDrive - Puget Sound Regional Council/coding/psrc-safety-plan/convening/data/collision_data.csv"
+
+mpo_file <- "C:/Users/chelmann/OneDrive - Puget Sound Regional Council/coding/psrc-safety-plan/convening/data/mpo_data.csv"
+
+psrc.logo <- "data/psrc_logo.png"
 
 # Custom svg icons for pictorial charts
 fa_house <- "path://M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
@@ -38,117 +44,250 @@ num_cities <- collisions %>%
   pull() %>%
   length()
 
-```
+metros <- read_csv(mpo_file, show_col_types = FALSE) 
 
-## Traffic Related Deaths and Serious Injuries are increasing
+tracts <- st_read("https://services6.arcgis.com/GWxg6t7KXELn1thE/arcgis/rest/services/Census_Tracts_2010/FeatureServer/0/query?where=0=0&outFields=*&f=pgeojson") %>% select(name="geoid10")
 
-```{r region-collisions}
+tract_collisions <- collisions %>% 
+  filter(geography == "Census Tract 2010" & year >= 2018) %>%
+  group_by(name) %>%
+  summarise(injuries = sum(injuries)) %>%
+  as_tibble()
 
-ui <- fluidPage(
-  fluidRow(
-    column(3, ""),
-    column(6, radioButtons("region_toggle", label = "Rate or Total",
-                            choices = list("Total" = "injuries", "Rate per 100k people" = "injury_rate_per_100k"),
-                            selected = "injuries",
-                            inline = TRUE)),
-    column(3, "")
-  ),
-  
-  fluidRow(
-    column(12, echarts4rOutput("region_plot"))
-  ),
-  
-  fluidRow(
-    column(12, "Source: Washington State Department of Transportation, Crash Data Division, Multi-Row data files (MRFF)")
-  )
-  
-)
- 
-server <- function(input, output){
-  
-  collisions_filter <- reactive({
-  collisions %>% 
-      select("geography", "name", "year", "injury_type", metric=all_of(input$region_toggle))
-  })
-  
-  output$region_plot <- renderEcharts4r({
-    collisions_filter() %>%
-      filter(geography=="County" & name=="Region") %>%
-      mutate(data_year = as.character(year)) %>%
-      group_by(injury_type) %>%
-      e_charts(x = data_year) %>%
-      e_line(metric, smooth = FALSE) %>%
-      e_color(psrc_colors$pgnobgy_5) %>%
-      e_toolbox_feature("dataZoom") %>%
-      e_toolbox_feature(feature="reset") %>%
-      e_toolbox_feature("dataView") %>%
-      e_toolbox_feature("saveAsImage") %>%
-      e_tooltip(trigger = "axis") %>%
-      e_x_axis(axisTick=list(show = FALSE)) %>%
-      e_show_loading()
+tracts <- left_join(tracts, tract_collisions, by=c("name")) %>%
+  mutate(injuries = replace_na(injuries, 0))
 
-  })
+create_tract_map <-function(tract_layer, d_title) {
+  
+  title <- tags$div(HTML(d_title))
+  
+  # Determine Bins
+  rng <- range(tract_layer$injuries)
+  max_bin <- max(abs(rng))
+  round_to <- 10^floor(log10(max_bin))
+  max_bin <- ceiling(max_bin/round_to)*round_to
+  breaks <- (max_bin*c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1))
+  bins <- c(0, breaks)
+  
+  pal <- colorBin(psrc_colors$purples_inc, domain = tract_layer$injuries, bins = bins)
+  labels <- paste0("<b>",paste0("Serious or Fatal Injuries: "), "</b>", tract_layer$injuries) %>% lapply(htmltools::HTML)
+  
+  working_map <- leaflet(data = tract_layer, options = leafletOptions(zoomControl=FALSE)) %>% 
+    addProviderTiles(providers$CartoDB.Positron) %>%
+    addLayersControl(baseGroups = c("Base Map"),
+                     overlayGroups = c("Census Tracts"),
+                     options = layersControlOptions(collapsed = TRUE)) %>%
+    addPolygons(fillColor = pal(tract_layer$injuries),
+                weight = 1.0,
+                opacity = 1,
+                color = "white",
+                dashArray = "3",
+                fillOpacity = 0.7,
+                highlight = highlightOptions(
+                  weight =5,
+                  color = "76787A",
+                  dashArray ="",
+                  fillOpacity = 0.7,
+                  bringToFront = TRUE),
+                label = labels,
+                labelOptions = labelOptions(
+                  style = list("font-weight" = "normal", padding = "3px 8px"),
+                  textsize = "15px",
+                  direction = "auto"),
+                group = "Census Tracts") %>%
+    addControl(title, position = "topleft") %>%
+    addEasyButton(easyButton(
+    icon="fa-globe", title="Region",
+    onClick=JS("function(btn, map){map.setView([47.615,-122.257],8.5); }"))) %>%
+    setView(lng = -122.257, lat = 47.615, zoom = 8.5)
+  
+  return(working_map)
+  
 }
 
-shinyApp(ui, server)
+```
+
+## We are one of the "safer" Metropolitan regions
+<IMG style="position:absolute; top:5%; left:80%; width:192px; "SRC="`r psrc.logo`">
+```{r mpo-collisions}
+
+mpo_chart <- metros %>% 
+  mutate(injury_rate = round(injury_rate, 1)) %>%
+  mutate(year = as.character(year)) %>%
+  arrange(year, injury_rate) %>%
+  mutate(`Traffic Related Deaths per 100k People` = injury_rate) %>%
+  group_by(year) %>%
+  e_charts(x=MPO_AREA, timeline=TRUE) %>%
+  e_color(psrc_colors$obgnpgy_5) %>%
+  e_tooltip() %>%
+  e_grid(left = '15%', top = 150, bottom = 50) %>%
+  e_bar(`Traffic Related Deaths per 100k People`, stack = "grp") %>%
+  e_flip_coords() %>%
+  e_legend(show = FALSE) %>%
+  e_toolbox_feature("dataView") %>%
+  e_toolbox_feature("saveAsImage") %>%
+  e_title(top = 75,
+          text="Five Year Average Traffic Related Deaths per 100,000 people",
+          subtext=paste(sep = "\n",
+                        "Collision Data Source: National Highway Traffic Safety Administration Fatality Analysis Reporting System (FARS) Data",
+                        "Population Data Source: US Census Bureau American Community Survey (ACS) 5-year data Table B03002")) %>%
+  e_timeline_opts(autoPlay = FALSE,
+                  axis_type = "category",
+                  top = 0,
+                  right = 150,
+                  left = 150,
+                  controlStyle=FALSE,
+                  lineStyle=FALSE,
+                  currentIndex = 11,
+                  label = list(show=TRUE,
+                               color='#4C4C4C',
+                               fontFamily = 'Poppins'),
+                  itemStyle = list(color='#FBD6C9'),
+                  checkpointStyle = list(color='#F05A28'),
+                  progress = list(itemStyle = list (color='#FBD6C9')),
+                  emphasis = list(itemStyle = list (color='#F05A28'))) %>%
+  e_y_axis(axisLabel = list(interval = 0L)) %>%
+  e_x_axis(min=0, max=16, 
+           interval=2, 
+           name = "Rate per 100,000 people",
+           nameLocation = 'center',
+           nameTextStyle = list(padding = c(10,5,5,5)))
 
 ```
 
-## It is both an Urban and a Rural thing!
+<div style="position:absolute; top:15%; width: 90%;">
+`r mpo_chart`
+</div> 
 
+## But Traffic Related Deaths and Serious Injuries are increasing
+<IMG style="position:absolute; top:5%; left:80%; width:192px; "SRC="`r psrc.logo`">
+```{r region-collisions, echo=FALSE}
+
+region_filter <- collisions %>% 
+  filter(geography=="County" & name=="Region") %>%
+  select("year", "injury_type", "injuries", "injury_rate_per_100k") %>%
+  pivot_longer(cols = c(injuries,injury_rate_per_100k), values_to = "estimate", names_to = "metric") %>%
+  mutate(metric = str_replace_all(metric, "injuries", "Total")) %>%
+  mutate(metric = str_replace_all(metric, "injury_rate_per_100k", "Rate per 100,000 people")) %>%
+  pivot_wider(names_from = injury_type, values_from = estimate) %>%
+  mutate(year = as.character(year))
+
+region_plot <- 
+  region_filter %>%
+  group_by(metric) %>%
+  e_charts(x = year, timeline=TRUE) %>%
+  e_line(`Serious Injuries`, smooth = FALSE) %>%
+  e_line(`Traffic Related Deaths`, smooth = FALSE) %>%
+  e_color(psrc_colors$pgnobgy_5) %>%
+  e_tooltip(trigger = "axis") %>%
+  e_grid(left = '5%', top = 150, bottom = 50) %>%
+  e_legend(show = TRUE, bottom=0) %>%
+  e_toolbox_feature("dataView") %>%
+  e_toolbox_feature("saveAsImage") %>%
+  e_title(top = 75,
+          text="Annual Traffic Related Deaths & Serious Injuries",
+          subtext=paste(sep = "\n",
+                        "Fatal Collision Data Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files",
+                        "Serious Injury Data Source: Washington State Department of Transportation, Crash Data Division, Multi-Row data files (MRFF)")) %>%
+  e_timeline_opts(autoPlay = FALSE,
+                  axis_type = "category",
+                  top = 0,
+                  right = 350,
+                  left = 350,
+                  controlStyle=FALSE,
+                  lineStyle=FALSE,
+                  currentIndex = 1,
+                  label = list(show=TRUE,
+                               color='#4C4C4C',
+                               fontFamily = 'Poppins'),
+                  itemStyle = list(color='#FBD6C9'),
+                  checkpointStyle = list(color='#F05A28'),
+                  progress = list(itemStyle = list (color='#FBD6C9')),
+                  emphasis = list(itemStyle = list (color='#F05A28'))) 
+
+```
+
+<div style="position:absolute; top:15%; width: 90%;">
+`r region_plot`
+</div> 
+
+## Collisions are an Urban and a Rural issue
+<IMG style="position:absolute; top:5%; left:80%; width:192px; "SRC="`r psrc.logo`">
 ```{r rural-urban}
 
-ui <- fluidPage(
-  fluidRow(
-    column(3, ""),
-    column(6,
-           sliderInput("rural_year", label = NULL, sep="", animate=FALSE, 
-                       min = min(collisions$year), max = max(collisions$year), 
-                       value = max(collisions$year))),
-    column(3, "")),
-  
-  fluidRow(
-    column(6, plotOutput("rural_urban_serious_plot")),
-    column(6, plotOutput("rural_urban_fatal_plot"))
-  ),
-  
-    fluidRow(
-    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
-  )
-  
-)
- 
-server <- function(input, output){
-  
-  rural_urban_fatal_filter <- reactive({
-    collisions %>% 
-      select("geography", "name", "year", "injury_type", "injuries") %>%
-      filter(geography == "Regional Geography" & injury_type == "Traffic Related Deaths" & year==input$rural_year) 
-  })
-  
-  rural_urban_serious_filter <- reactive({
-    collisions %>% 
-      select("geography", "name", "year", "injury_type", "injuries") %>%
-      filter(geography == "Regional Geography" & injury_type == "Serious Injuries" & year==input$rural_year)
-  })
-  
-  output$rural_urban_fatal_plot <- renderPlot({
-    create_treemap_chart(t=rural_urban_fatal_filter(), s="injuries", fill="name", title = "Traffic Relared Deaths")
-  })
-  
-  output$rural_urban_serious_plot <- renderPlot({
-    create_treemap_chart(t=rural_urban_serious_filter(), s="injuries", fill="name", title = "Serious Injuries") 
-  })
-  
-  
-}
+rgeo_filter <- collisions %>%
+  select("geography", "name", "year", "injury_type", "injuries") %>%
+  filter(geography == "Regional Geography") %>%
+  mutate(name = str_replace_all(name, "High Capacity Transit Communities", "HCT Cities")) %>%
+  mutate(name = str_replace_all(name, "Urban Unincorporated", "UU")) %>%
+  mutate(name = str_replace_all(name, "Metropolitan Cities", "Metro Cities")) %>%
+  pivot_wider(names_from = injury_type, values_from = injuries) %>% 
+  select(-"geography") %>%
+  mutate(year = as.character(year), name = str_wrap(name, 7))
 
-shinyApp(ui, server)
+p1 <- 
+  rgeo_filter %>%
+  arrange(desc(`Traffic Related Deaths`)) %>% 
+  group_by(year) %>%
+  e_charts(x = name, timeline = TRUE, elementId = "chart1") %>%
+  e_bar(`Traffic Related Deaths`) %>%
+  e_legend(show = FALSE) %>%
+  e_x_axis(axisLabel = list(interval = 0L)) %>%
+  e_grid(top = 150, bottom = 50) %>%
+  e_title(top = 75,
+          text="Traffic Related Deaths",
+          subtext=paste(sep = "\n",
+                        "Source: Washington Traffic Safety Commision",
+                        "Washington State CFC analytical data files")) %>%
+  e_color(psrc_colors$obgnpgy_5) %>%
+  e_timeline_opts(autoPlay = FALSE,
+                  axis_type = "category",
+                  top = 'top',
+                  left = 50,
+                  right= 50,
+                  controlStyle=FALSE,
+                  lineStyle=FALSE,
+                  currentIndex = 12,
+                  label = list(show=TRUE,
+                               color='#4C4C4C',
+                               fontFamily = 'Poppins'),
+                  itemStyle = list(color='#FBD6C9'),
+                  checkpointStyle = list(color='#F05A28'),
+                  progress = list(itemStyle = list (color='#FBD6C9')),
+                  emphasis = list(itemStyle = list (color='#F05A28'))) %>%
+  e_tooltip(trigger = "axis")
+
+p2 <- 
+  rgeo_filter %>%
+  arrange(desc(`Serious Injuries`)) %>% 
+  group_by(year) %>%
+  e_charts(x = name, timeline = TRUE, elementId = "chart2") %>%
+  e_bar(`Serious Injuries`) %>% 
+  e_connect(c("chart1")) %>%
+  e_legend(show = FALSE) %>%
+  e_x_axis(axisLabel = list(interval = 0L)) %>%
+  e_grid(top = 150, bottom = 50) %>%
+  e_title(top = 75,
+          text="Serious Injuries",
+          subtext=paste(sep = "\n",
+                        "Source: Washington State Department of Transportation",
+                        "Crash Data Division MRFF")) %>%
+  e_color(psrc_colors$pgnobgy_5) %>%
+  e_timeline_opts(show = FALSE) %>% 
+  e_toolbox_feature("dataView") %>%
+  e_toolbox_feature("saveAsImage") %>%
+  e_tooltip(trigger = "axis")
+  
+rgeo_plot <- e_arrange(p1, p2, rows = 2, cols = 2) 
 
 ```
 
-## Every City is affected
+<div style="position:absolute; top:15%; width: 90%;">
+`r rgeo_plot`
+</div> 
 
+## Every City is affected
+<IMG style="position:absolute; top:5%; left:80%; width:192px; "SRC="`r psrc.logo`">
 ```{r cities}
 
 ui <- fluidPage(
@@ -159,16 +298,15 @@ ui <- fluidPage(
 br(),
 
   fluidRow(
-    column(12, echarts4rOutput("city_wc"))
-  ),
-  
-    fluidRow(
-    column(12, "Source: Washington Traffic Safety Commision, Washington State Coded Fatal Crash (CFC) analytical data files")
+    column(6, echarts4rOutput("city_wc")),
+    column(6, leafletOutput("tract_collision_map"))
   )
   
 )
  
 server <- function(input, output){
+  
+  output$tract_collision_map <- renderLeaflet({create_tract_map(tracts, d_title="Fatal & Serious Injuries by Census Tract: 2018-2022")})
   
   city_filter <- reactive({
     collisions %>%
@@ -183,11 +321,11 @@ server <- function(input, output){
     city_filter() %>%
       e_charts() %>%
       e_cloud(name, freq, shape = "rectangle", sizeRange = c(1, 75)) %>%
-      e_title("Cities with Traffic Related Deaths or Serious Injuries") %>%
-      e_toolbox_feature("dataZoom") %>%
-      e_toolbox_feature(feature="reset") %>%
       e_toolbox_feature("dataView") %>%
-      e_toolbox_feature("saveAsImage")
+      e_toolbox_feature("saveAsImage") %>%
+      e_title(text=paste(sep = "\n","Cities with Traffic Related Deaths",
+                         "or Serious Injuries"),
+              padding = list(c(20,5,20,5)))
 
   })
   
@@ -248,8 +386,6 @@ server <- function(input, output){
     e_x_axis(splitLine=list(show = FALSE)) %>% 
     e_y_axis(splitLine=list(show = FALSE),
              axisPointer = list(show = FALSE)) %>%
-    e_toolbox_feature("dataZoom") %>%
-    e_toolbox_feature(feature="reset") %>%
     e_toolbox_feature("dataView") %>%
     e_toolbox_feature("saveAsImage") %>%
     e_title("Traffic Related Deaths")
@@ -305,8 +441,6 @@ server <- function(input, output){
       e_charts(name) %>%
       e_pie(`Traffic Related Deaths`, radius = c("50%", "70%")) %>% 
       e_color(psrc_colors$pgnobgy_5) %>%
-      e_toolbox_feature("dataZoom") %>%
-      e_toolbox_feature(feature="reset") %>%
       e_toolbox_feature("dataView") %>%
       e_toolbox_feature("saveAsImage") %>%
       e_tooltip() %>%
@@ -399,8 +533,6 @@ server <- function(input, output){
       e_charts(name) %>%
       e_bar(value, stack = "grp") %>%
       e_color(psrc_colors$pgnobgy_5) %>%
-      e_toolbox_feature("dataZoom") %>%
-      e_toolbox_feature(feature="reset") %>%
       e_toolbox_feature("dataView") %>%
       e_toolbox_feature("saveAsImage") %>%
       e_tooltip(trigger = "axis") %>%
